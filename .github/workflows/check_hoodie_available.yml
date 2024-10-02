@@ -1,6 +1,7 @@
 name: Check Hoodie Available
 
 on:
+  push:
   schedule:
     - cron: "*/5 * * * *" 
 
