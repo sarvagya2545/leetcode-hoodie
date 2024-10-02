@@ -2,7 +2,7 @@ name: Check Hoodie Available
 
 on:
   schedule:
-    - cron: "*/5 * * * *" 
+    - cron: "*/1 * * * *" 
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -26,3 +26,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+        
+      - name: Run command
+        run: python hello.py
