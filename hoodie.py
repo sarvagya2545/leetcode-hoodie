@@ -1,5 +1,8 @@
 import requests
 
+leetcode_store_url = "https://leetcode.com/store/"
+discord_webhook_url = "https://discord.com/api/webhooks/1290997468149842011/HJd7Ov0O2TkWjsSxxZ3FPEB3a_rm4-s73MzXS_eZHO1T1ficQrf_C_DQwOAXtMavycXP"
+
 def check_hoodie_available() -> bool:
     data = get_leetcode_store_data()
     is_hoodie_available = False
@@ -67,10 +70,18 @@ def get_leetcode_store_data():
 
 def send_notification():
     """
-    Send whatsapp notification notifying about the availability of hoodie
+    Send discord notification notifying about the availability of hoodie
     """
-    print("Send notification")
+    data = {
+        "content": f"Leetcode Hoodie is available! Get the hoodie: {leetcode_store_url}",
+        "username": "Leetcode Hoodie Notifier"
+    }
 
+    response = requests.post(discord_webhook_url, json=data)
+    if response.status_code == 204:
+        print("Message sent successfully")
+    else:
+        print(f"Failed to send message: status code - {response.status_code}. Error - {response.content}")    
 
 if __name__ == "__main__":
     if check_hoodie_available():
